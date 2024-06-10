@@ -78,7 +78,6 @@
                             </table> 
                         </div>
                     </div>
-            
                 </aside>
 
                 <aside class="col-lg-4">
@@ -109,10 +108,7 @@
                         </div>
                     </div>
                 </aside>
-            
-            
             </div>
-        
         </div>
     </section>
 
@@ -128,7 +124,7 @@
                     const cookie = cookies[i].trim();
                     // Does this cookie string begin with the name we want ?
                     if (cookie.substring(0, name.length + 1) === (name + '=')){
-                        cookieValue = decodeURlComponent(cookie.substring(name.length + 1));
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                         break;
                     }
                 }
@@ -181,12 +177,11 @@
                                 transID: details.id,
                                 payment_method: payment_method,
                                 status: details.status,
-                            }),
+                            }),                         
                         })
                         .then(response => response.json())
                         .then((data) => {
-                            window.location.href = redirect_url + '?order_number='+data.order_number+'&payment_id='data.transID;
-                        });
+                            window.location.href = redirect_url + '?order_number=' + data.order_number + '&payment_id=' + data.transID;                        });
                     }
                 });
             }

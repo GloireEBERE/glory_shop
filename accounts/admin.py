@@ -1,8 +1,12 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Account
+from .models import Account, UserProfile
+from django.utils.html import format_html
 
 # Register your models here.
+admin.site.site_header = 'E-Commerce'
+admin.site.site_title = 'Glory_Shop'
+admin.site.index_title = 'Manager'
 
 class AccounAdmin(UserAdmin):
     list_display = ('email', 'first_name', 'last_name', 'username', 'last_login', 'date_joined', 'is_active')
@@ -14,4 +18,15 @@ class AccounAdmin(UserAdmin):
     list_filter = ()
     fieldsets = ()
 
+
+class UserProfileAdmin(admin.ModelAdmin):
+    def thumbnail(self, obj):
+        if obj.profile_picture:
+            return format_html('<img src="{}" width="30" style="border-radius:50%;">'.format(obj.profile_picture.url))
+        else:
+            return "Pas de photo de profil."
+    thumbnail.short_description = 'Photo de Profil'
+    list_display = ('thumbnail', 'user', 'city', 'state', 'country')
+
 admin.site.register(Account, AccounAdmin)
+admin.site.register(UserProfile, UserProfileAdmin)

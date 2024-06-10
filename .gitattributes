@@ -1,0 +1,9 @@
+# Dans .gitattributes
+
+# Pour traiter tous les fichiers texte comme LF
+* text=auto
+
+# Pour traiter les fichiers spécifiques avec LF
+*.js text eol=lf
+*.html text eol=lf
+*.css text eol=lf

@@ -29,7 +29,7 @@ def add_cart(request, product_id):
                 except:
                     pass
         
-        cart = None  # Initialisez cart avec None
+        cart = None
         
         
         is_cart_item_exists = CartItem.objects.filter(product=product, user=current_user).exists()
@@ -81,7 +81,7 @@ def add_cart(request, product_id):
                 except:
                     pass
         
-        cart = None  # Initialisez cart avec None
+        cart = None
         try:
             #get the cart using the cart_id present in the session
             cart = Cart.objects.get(cart_id=_cart_id(request))
